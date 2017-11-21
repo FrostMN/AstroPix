@@ -5,9 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
+var favorites = require('./routes/favorites');
 
 var app = express();
 
@@ -24,8 +27,29 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var mongo_url = process.env.MONGO_URL_ASTRO;
+mongo_url = mongo_url.replace('{user}', process.env.MONGO_USER_ASTRO);
+mongo_url = mongo_url.replace('{pword}', process.env.MONGO_PW_ASTRO);
+
+console.log(mongo_url);
+
+// Config session store
+var store = new MongoDBStore({ uri: mongo_url, collection: 'sessions'}, function (err) {
+    if (err) {
+      console.log("Error, cannot connect to MongoDB");
+    }
+});
+
+app.use(session({
+    secret: 'top secret!',
+    resave: true,
+    saveUninitalized: true,
+    store: store
+}));
+
 app.use('/', index);
-app.use('/users', users);
+// app.use('/users', users);
+app.use('/favorites', favorites);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
