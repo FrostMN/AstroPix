@@ -17,7 +17,7 @@ router.post('/add', function(req, res, next){
     // Is this image already a favorite? Ignore
     var isFav = false;
     for (var i = 0 ; i < req.session.favorites.length; i++) {
-        if (req.session.favorites[i].date == req.body.date) {
+        if (req.session.favorites[i].date === req.body.date) {
             // already in the array. Redirect.
             isFav = true;  break;
         }

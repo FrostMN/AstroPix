@@ -9,7 +9,6 @@ var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 
 var index = require('./routes/index');
-// var users = require('./routes/users');
 var favorites = require('./routes/favorites');
 
 var app = express();
@@ -20,35 +19,36 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var mongo_url = process.env.MONGO_URL_ASTRO;
-mongo_url = mongo_url.replace('{user}', process.env.MONGO_USER_ASTRO);
-mongo_url = mongo_url.replace('{pword}', process.env.MONGO_PW_ASTRO);
-
-console.log(mongo_url);
+// loads all mongoDB info
+var mongo_url = process.env.MONGO_URL;
+mongo_url = mongo_url.replace('{user}', process.env.MONGO_ASTRO_USER);
+mongo_url = mongo_url.replace('{pword}', process.env.MONGO_ASTRO_PW);
+mongo_url = mongo_url.replace('{db}', process.env.MONGO_ASTRO_DB_NAME);
 
 // Config session store
-var store = new MongoDBStore({ uri: mongo_url, collection: 'sessions'}, function (err) {
+var store = new MongoDBStore({ uri: mongo_url, collection: 'sessions-astro'}, function (err) {
     if (err) {
       console.log("Error, cannot connect to MongoDB");
     }
 });
 
+// sets configs for session
 app.use(session({
-    secret: 'top secret!',
+    secret: 'cWrqJPd2CBv8oKtYiMGWpEiKuqD2AfzHkDEH8MTwYU',
     resave: true,
-    saveUninitalized: true,
+    saveUninitialized: true,
     store: store
 }));
 
+// registers routes
 app.use('/', index);
-// app.use('/users', users);
 app.use('/favorites', favorites);
 
 // catch 404 and forward to error handler
