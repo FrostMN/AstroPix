@@ -1,7 +1,9 @@
 <div class="header">
     <ul>
         <li><a id="today" class="active" href="/today">Today</a></li>
+        {{#if today}}
         <li><a href="#prev"><<</a></li>
+        {{/if}}
         <li><a id="random" href="/random">Random</a></li>
         {{#if today }}
             {{today}}
