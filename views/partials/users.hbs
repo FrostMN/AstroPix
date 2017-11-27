@@ -1,0 +1,21 @@
+<div id="signup-modal" class="modal">
+    <div class="modal-content">
+        <form action="/signup" method="POST">
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <!--<input type="text" name="username" placeholder="first name">-->
+            <!--<input type="text" name="username" placeholder="last name">-->
+            <!--<input type="email" name="username" placeholder="email">-->
+            <input type="submit" value="sign up"><input type="button" value="cancel" onclick="closeModal(this)">
+        </form>
+    </div>
+</div>
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="login"><input type="button" value="cancel" onclick="closeModal(this)">
+        </form>
+    </div>
+</div>

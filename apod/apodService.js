@@ -17,18 +17,26 @@ function apodRequest(callback, random) {
     var queryParam = {};
     var API_KEY = process.env.APOD_API_KEY;  // Make sure an environment variable is set, containing a valid APOD key
 
-    if (random) {
+    if (random === true) {
         queryParam = { 'api_key' : API_KEY,  "date" :randomDateString()  };
-    }
-    else {
+    // } else if () {
+
+    } else {
         queryParam = { "api_key" : API_KEY};
     }
+
+    // if (random) {
+    //     queryParam = { 'api_key' : API_KEY,  "date" :randomDateString()  };
+    // }
+    // else {
+    //     queryParam = { "api_key" : API_KEY};
+    // }
 
     //Use request module to request picture from APOD service.
     //Must handle result in callback.
     request( {uri :baseURL, qs: queryParam} , function(error, apod_response, body){
 
-        if (!error && apod_response.statusCode == 200){
+        if (!error && apod_response.statusCode === 200){
             //No error, and there is a response from APOD. Expect the response to be a string.
             console.log("NASA SAYS \n" + JSON.stringify(body));
             var apodJSON = JSON.parse(body);   //Convert JSON text to a JavaScript object

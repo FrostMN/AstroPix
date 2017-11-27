@@ -1,6 +1,23 @@
-.main {
-    background-color: aquamarine;
+:root {
+    --modal-background: rgba(255,255,255,0.5);
+    --main-color: #3F3F3F;
 
+    --main-hover-color: #111;
+
+    --secodary-color: #4f4f4f;
+
+    --light-text: white;
+    --dark-text: black;
+
+    --text-background: ghostwhite;
+    --sight-background: azure;
+}
+
+body {
+    background-color: var(--sight-background);
+}
+
+.main {
     position: absolute;
     top: 0;
     left: 0;
@@ -37,7 +54,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: var(--main-color);
 }
 
 li {
@@ -51,18 +68,18 @@ li:last-child {
 
 li a {
     display: block;
-    color: white;
+    color: var(--light-text);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+    background-color: var(--main-hover-color);
 }
 
 .active {
-    background-color: #4CAF50;
+    background-color: var(--main-hover-color);
 }
 
 /**************************/
@@ -73,13 +90,15 @@ li a:hover:not(.active) {
     margin: 4em auto;
 
     width: 1000px;
+    height: 500px;
     /*max-width: 30em;*/
 
-    background-color: brown;
-
-    /*border: solid 5px brown;*/
+    background-color: var(--text-background);
+    border: solid 2px var(--secodary-color);
 
     overflow: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
 
     position: relative;
 
@@ -88,12 +107,11 @@ li a:hover:not(.active) {
 
 .apod-body {
     float: right;
-    /*border: solid 5px blue;*/
     width: 499px;
 }
 
 .apod-head {
-    background-color: #4CAF50;
+    background-color: var(--secodary-color);
 
     position: relative;
 
@@ -107,12 +125,12 @@ li a:hover:not(.active) {
 }
 
 .apod-text {
-    background-color: darkgoldenrod;
+    /*background-color: darkgoldenrod;*/
     padding: 1em;
 }
 
 .apod-foot {
-    background-color: blueviolet;
+    background-color: var(--secodary-color);
     position: absolute;
     padding: .5em;
     bottom: 0;
@@ -124,18 +142,27 @@ li a:hover:not(.active) {
     display: block;
     border: none;
     cursor: pointer;
-    background-color: red;
+    color: var(--light-text);
+    background-color: var(--secodary-color);
 }
 
 .apod-foot input[type=submit]:hover {
     display: block;
     border: none;
     cursor: pointer;
-    background-color: inherit;
+    color: var(--dark-text);
+    background-color: var(--light-text);
+}
+
+.apod-foot a {
+    text-decoration: none;
+    color: var(--light-text);
 }
 
 .apod-image {
     float: left;
+    border-right: solid 1px var(--secodary-color);
+
 }
 
 .apod-img {
@@ -143,4 +170,43 @@ li a:hover:not(.active) {
     width: 500px;
     margin: 0;
     /*border: solid 5px deeppink;*/
+}
+
+
+/**************************/
+/*     CSS for Modals     */
+/**************************/
+
+.modal {
+    display: none;
+
+    position: fixed;
+    padding: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background: var(--modal-background);
+
+    text-align: center;
+
+    z-index: 1000;
+
+
+}
+
+.modal-content {
+    position: absolute;
+    background-color: white;
+    border: solid 1px black;
+
+    display: inline-block;
+
+    margin: 3em auto;
+
+    padding: 1em;
 }

@@ -1,0 +1,32 @@
+<div class="apod-card">
+    <div class="apod-image">
+        {{#if apod.isImage }}
+            <img class="apod-img" src="{{ apod.imageUrl }}">
+        {{else}}
+            <p>Today's picture is a video or another media type. <a href="{{ apod.imageUrl }}">Please click here to view</a></p>
+        {{/if}}
+    </div>
+    <div class="apod-body">
+        <div class="apod-head">
+            <h1>{{apod.title}}</h1>
+            <h3>This is NASA's Astronomy Picture of the Day for {{ apod.apodDate }}.</h3>
+        </div>
+        <div class="apod-text">
+            <p>{{ apod.explanation }}</p>
+        </div>
+        <div class="apod-foot">
+            <span class="left">
+            {{ apod.credit }} | <a href="{{ apod.nasa_url }}">See this image at NASA's website</a>
+            </span>
+            {{#if owner}}
+                <div class="add-favorites-form right">
+                    <form action="favorites/delete" method="POST">
+                        <input type="hidden" name="owner_id" value="{{owner}}">
+                        <input type="hidden" name="favorite_id" value="{{apod._id}}">
+                        <input type="submit" name="add" value="Delete">
+                    </form>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,15 +1,19 @@
 <div class="header">
     <ul>
-        <li><a class="active" href="#home">Today</a></li>
+        <li><a id="today" class="active" href="/today">Today</a></li>
         <li><a href="#prev"><<</a></li>
-        <li><a href="#random">Random</a></li>
-        <li><a href="#next">>></a></li>
+        <li><a id="random" href="/random">Random</a></li>
+        {{#if today }}
+            {{today}}
+        {{esle}}
+            <li><a href="/next">>></a> {{today}} </li>
+        {{/if}}
         {{#if user}}
-            <li style="float:right"><a href="#about">Logout</a></li>
-            <li style="float:right"><a href="#about">Favorites</a></li>
+            <li style="float:right"><a href="/logout">Logout: {{user.local.username}}</a></li>
+            <li style="float:right"><a href="/favorites">Favorites</a></li>
         {{else}}
-            <li style="float:right"><a href="#about">Login</a></li>
-            <li style="float:right"><a href="#about">Signup</a></li>
+            <li style="float:right"><a href="javascript:void(0)" onclick="showModal('login-modal')">Login</a></li>
+            <li style="float:right"><a href="javascript:void(0)" onclick="showModal('signup-modal')">Signup</a></li>
         {{/if}}
     </ul>
 </div>
