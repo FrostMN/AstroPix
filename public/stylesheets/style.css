@@ -1,33 +1,146 @@
-body {
-  padding: 15px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: whitesmoke;
+.main {
+    background-color: aquamarine;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
 }
 
-a {
-  color: #00B7FF;
+
+.right {
+    float: right;
 }
 
-img {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.left {
+    float: left;
 }
 
-form {
-  padding: 10px 0 10px 0;
+/**************************/
+/* CSS for Header and nav */
+/**************************/
+
+.header {
+    /*background: red;*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /*height: 4em;*/
+    z-index: 20;
 }
 
-.fav-item {
-  padding: 20px 0 20px 0;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
-.fav-image {
-  width: 200px;
-  display: inline;
-  border: 2px solid;
+li {
+    float: left;
+    border-right:1px solid #bbb;
 }
 
-.fav-date, .fav-title {
-  display: inline;
-  padding: 20px;
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+/**************************/
+/*   CSS for APOD Card    */
+/**************************/
+
+.apod-card {
+    margin: 4em auto;
+
+    width: 1000px;
+    /*max-width: 30em;*/
+
+    background-color: brown;
+
+    /*border: solid 5px brown;*/
+
+    overflow: auto;
+
+    position: relative;
+
+}
+
+
+.apod-body {
+    float: right;
+    /*border: solid 5px blue;*/
+    width: 499px;
+}
+
+.apod-head {
+    background-color: #4CAF50;
+
+    position: relative;
+
+
+    padding: .5em;
+
+}
+
+.apod-head h1{
+    font-size: 20pt;
+}
+
+.apod-text {
+    background-color: darkgoldenrod;
+    padding: 1em;
+}
+
+.apod-foot {
+    background-color: blueviolet;
+    position: absolute;
+    padding: .5em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.apod-foot input[type=submit] {
+    display: block;
+    border: none;
+    cursor: pointer;
+    background-color: red;
+}
+
+.apod-foot input[type=submit]:hover {
+    display: block;
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.apod-image {
+    float: left;
+}
+
+.apod-img {
+    height: 500px;
+    width: 500px;
+    margin: 0;
+    /*border: solid 5px deeppink;*/
 }

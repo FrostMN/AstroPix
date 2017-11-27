@@ -32,6 +32,8 @@ mongo_url = mongo_url.replace('{user}', process.env.MONGO_ASTRO_USER);
 mongo_url = mongo_url.replace('{pword}', process.env.MONGO_ASTRO_PW);
 mongo_url = mongo_url.replace('{db}', process.env.MONGO_ASTRO_DB_NAME);
 
+console.log(mongo_url)
+
 // Config session store
 var store = new MongoDBStore({ uri: mongo_url, collection: 'sessions-astro'}, function (err) {
     if (err) {
